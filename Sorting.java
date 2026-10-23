@@ -1,4 +1,4 @@
-package laba2;
+package sortirovki;
 
 import java.util.List;
 
