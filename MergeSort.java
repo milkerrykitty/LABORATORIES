@@ -1,4 +1,4 @@
-package laba2;
+package sortirovki;
 import sortirovki.Sorting;
 
 import java.util.ArrayList;
