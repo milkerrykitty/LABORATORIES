@@ -1,6 +1,6 @@
 package laba2;
 
-public class Student implements Comparable<Student> {
+public class Student {
     private final String name;
     private final int age;
 
@@ -17,8 +17,4 @@ public class Student implements Comparable<Student> {
         return age;
     }
 
-    @Override
-    public int compareTo(Student o) {
-        return 0;
-    }
 }
