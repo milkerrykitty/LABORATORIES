@@ -8,17 +8,17 @@ public class HashMapImpl<V> implements HashMap<String, V>
     private static final int TABLE_SIZE = 300007;
     private static final int A = 31;
 
-    private static class Entry<V> {
+    private static class Pair<V> {
         private final String key;
         private V value;
 
-        private Entry(String key, V value) {
+        private Pair(String key, V value) {
             this.key = key;
             this.value = value;
         }
     }
 
-    private final ArrayList<LinkedList<Entry<V>>> table;
+    private final ArrayList<LinkedList<Pair<V>>> table;
     public HashMapImpl() {
         table = new ArrayList<>(TABLE_SIZE);
         for (int i = 0; i < TABLE_SIZE; i++) {
@@ -44,14 +44,14 @@ public class HashMapImpl<V> implements HashMap<String, V>
     public void put(String key, V value)
     {
      int index = (int) hashByString(key);
-     LinkedList<Entry<V>> bucket = table.get(index);
-        for (Entry<V> entry : bucket) {
-            if (entry.key.equals(key)) {
-                entry.value = value;
+     LinkedList<Pair<V>> bucket = table.get(index);
+        for (Pair<V> pair : bucket) {
+            if (pair.key.equals(key)) {
+                pair.value = value;
                 return;
             }
         }
-        bucket.add(new Entry<>(key, value));
+        bucket.add(new Pair<>(key, value));
     }
 
     @Override
@@ -59,10 +59,10 @@ public class HashMapImpl<V> implements HashMap<String, V>
     {
         V value = null;
         int index = (int) hashByString(key);
-        LinkedList<Entry<V>> bucket = table.get(index);
-        for (Entry<V> entry : bucket) {
-            if (entry.key.equals(key)) {
-                value = entry.value;
+        LinkedList<Pair<V>> bucket = table.get(index);
+        for (Pair<V> pair : bucket) {
+            if (pair.key.equals(key)) {
+                value = pair.value;
             }
         }
         return value;
@@ -73,11 +73,11 @@ public class HashMapImpl<V> implements HashMap<String, V>
     {
         V remove = null;
         int index = (int) hashByString(key);
-        LinkedList<Entry<V>> bucket = table.get(index);
-        for (Entry<V> entry : bucket) {
-            if (entry.key.equals(key)) {
-                remove = entry.value;
-                bucket.remove(entry);
+        LinkedList<Pair<V>> bucket = table.get(index);
+        for (Pair<V> pair : bucket) {
+            if (pair.key.equals(key)) {
+                remove = pair.value;
+                bucket.remove(pair);
                 break;
             }
         }
