@@ -5,7 +5,7 @@ public class lapa6_3
     public static double findingX(double a)
     {
         double left = 1;
-        double right = 1000000;
+        double right = 10000000;
 
         while (right - left > 0.000000001)
         {
